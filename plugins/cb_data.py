@@ -15,24 +15,29 @@ async def cancel(bot,update):
            await update.message.delete()
 	except:
            return
-@Client.on_callback_query(filters.regex('rename'))
-async def rename(bot,update):
-	user_id = update.message.chat.id
-	date = update.message.date
-	await update.message.delete()
-	await update.message.reply_text("__𝙿𝚕𝚎𝚊𝚜𝚎 𝙴𝚗𝚝𝚎𝚛 𝙽𝚎𝚠 𝙵𝚒𝚕𝚎𝙽𝚊𝚖𝚎...__",	
-	reply_to_message_id=update.message.reply_to_message.id,  
-	reply_markup=ForceReply(True))
+
+
+#@Client.on_callback_query(filters.regex('rename'))
+#async def rename(bot,update):
+	#user_id = update.message.chat.id
+	#date = update.message.date
+	#await update.message.delete()
+	#await update.message.reply_text("__𝙿𝚕𝚎𝚊𝚜𝚎 𝙴𝚗𝚝𝚎𝚛 𝙽𝚎𝚠 𝙵𝚒𝚕𝚎𝙽𝚊𝚖𝚎...__",	
+	#reply_to_message_id=update.message.reply_to_message.id,  
+	#reply_markup=ForceReply(True))
+
 	
-@Client.on_callback_query(filters.regex("upload"))
-async def doc(bot,update):
-     type = update.data.split('_')[1]
-     new_name = update.message.text
-     new_filename = new_name.split(":-")[1]
+#@Client.on_callback_query(filters.regex("upload"))
+
+@Client.on_message(filters.private &( filters.document | filters.audio | filters.video ))
+async def doc(bot, update):
+     file = getattr(update, update.media.value)
+     filename = file.file_name     
      if not "." in new_filename:
-         new_filename = new_filename + ".mkv"
+         new_filename = filename + ".mkv"
      else:
-         new_filename = new_filename + ".mkv"
+         new_filename = filename + ".mkv"
+
      file_path = f"downloads/{new_filename}"
      file = update.message.reply_to_message
      ms = await update.message.edit("𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳...")
@@ -73,34 +78,15 @@ async def doc(bot,update):
          img.resize((320, 320))
          img.save(ph_path, "JPEG")
      await ms.edit("𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....")
-     c_time = time.time() 
-     try:
-        if type == "document":
-           await bot.send_document(
-		    update.message.chat.id,
-                    document=file_path,
-                    thumb=ph_path, 
-                    caption=caption, 
-                    progress=progress_for_pyrogram,
-                    progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time   ))
-        elif type == "video": 
-            await bot.send_video(
-		    update.message.chat.id,
-		    video=file_path,
-		    caption=caption,
-		    thumb=ph_path,
-		    duration=duration,
-		    progress=progress_for_pyrogram,
-		    progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time))
-        elif type == "audio": 
-            await bot.send_audio(
-		    update.message.chat.id,
-		    audio=file_path,
-		    caption=caption,
-		    thumb=ph_path,
-		    duration=duration,
-		    progress=progress_for_pyrogram,
-		    progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time   )) 
+     c_time = time.time()              
+     await bot.send_document(
+	 update.message.chat.id,
+         document=file_path,
+         thumb=ph_path, 
+         caption=caption, 
+         progress=progress_for_pyrogram,
+         progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time   ))
+       
      except Exception as e: 
          await ms.edit(e) 
          os.remove(file_path)
