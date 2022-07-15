@@ -33,7 +33,7 @@ async def cancel(bot,update):
 async def doc(bot, update):
      file = getattr(update, update.media.value)
      filename = file.file_name     
-     if not "." in new_filename:
+     if not "." in filename:
          new_filename = filename + ".mkv"
      else:
          new_filename = filename + ".mkv"
