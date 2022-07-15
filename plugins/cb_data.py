@@ -78,15 +78,16 @@ async def doc(bot, update):
          img.resize((320, 320))
          img.save(ph_path, "JPEG")
      await ms.edit("𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....")
-     c_time = time.time()              
-     await bot.send_document(
-	 update.message.chat.id,
-         document=file_path,
-         thumb=ph_path, 
-         caption=caption, 
-         progress=progress_for_pyrogram,
-         progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time   
-     )       
+     c_time = time.time() 
+     try:       
+         await bot.send_document(
+	     update.message.chat.id,
+             document=file_path,
+             thumb=ph_path, 
+             caption=caption, 
+             progress=progress_for_pyrogram,
+             progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time  )) 
+            
      except Exception as e: 
          await ms.edit(e) 
          os.remove(file_path)
