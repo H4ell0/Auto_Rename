@@ -40,10 +40,10 @@ async def doc(bot, update):
 
      file_path = f"downloads/{new_filename}"
      file = getattr(update, update.media.value)
-     ms = await bot.send_message(update.message.chat.id, text="𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳...")
+     #ms = await bot.send_message(update.message.chat.id, text="𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳...")
      c_time = time.time()
      try:
-     	path = await bot.download_media(message = file, progress=progress_for_pyrogram,progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳....",  ms, c_time   ))
+     	path = await bot.download_media(message = file, progress=progress_for_pyrogram,progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳....", c_time   ))        
      except Exception as e:
      	await ms.edit(e)
      	return 
