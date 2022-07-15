@@ -6,7 +6,7 @@ from pyrogram.errors import UserNotParticipant
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram import enums
 
-FORCE_SUB = os.environ.get("FORCE_SUB", None)           
+#FORCE_SUB = os.environ.get("FORCE_SUB", None)           
 
 async def progress_for_pyrogram(current, total, ud_type, message, start):
 
@@ -79,17 +79,17 @@ def convert(seconds):
     seconds %= 60      
     return "%d:%02d:%02d" % (hour, minutes, seconds)
 
-async def not_subscribed(_, client, message):
-   if not FORCE_SUB:
-      return False
-   try:             
-      user = await client.get_chat_member(FORCE_SUB, message.from_user.id)
-   except UserNotParticipant:
-      pass
-   else:
-      if user.status != enums.ChatMemberStatus.RESTRICTED:         
-         return False 
-   return True
+#async def not_subscribed(_, client, message):
+  # if not FORCE_SUB:
+     # return False
+  # try:             
+      #user = await client.get_chat_member(FORCE_SUB, message.from_user.id)
+   #except UserNotParticipant:
+      #pass
+  # else:
+     # if user.status != enums.ChatMemberStatus.RESTRICTED:         
+         #return False 
+  # return True
          
 
 
