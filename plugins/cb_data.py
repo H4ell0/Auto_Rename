@@ -85,7 +85,8 @@ async def doc(bot, update):
          thumb=ph_path, 
          caption=caption, 
          progress=progress_for_pyrogram,
-         progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time   ))       
+         progress_args=( "𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝚄𝙿𝙻𝙾𝙰𝙳𝙸𝙽𝙶....",  ms, c_time   
+     )       
      except Exception as e: 
          await ms.edit(e) 
          os.remove(file_path)
