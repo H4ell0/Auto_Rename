@@ -1,6 +1,6 @@
 from helper.utils import progress_for_pyrogram, convert
 from pyrogram import Client, filters
-from pyrogram.types import (  InlineKeyboardButton, InlineKeyboardMarkup,ForceReply)
+from pyrogram.types import ( Message, InlineKeyboardButton, InlineKeyboardMarkup,ForceReply)
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from helper.database import find
