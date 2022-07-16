@@ -61,18 +61,17 @@ async def doc(bot, update):
      user_id = int(update.chat.id) 
      ph_path = None
      data = find(user_id) 
-     media = getattr(file, file.media.value)
+     #media = getattr(file, file.media.value)
      c_caption = data[1] 
      c_thumb = data[0]
      if c_caption:
          caption = c_caption.format(filename=new_filename, filesize=humanize.naturalsize(media.file_size), duration=convert(duration))
      else:
-         caption = f"**{new_name}**"
-     if (media.thumbs or c_thumb):
-         if c_thumb:
-            ph_path = await bot.download_media(c_thumb) 
-         else:
-            ph_path = await bot.download_media(media.thumbs[0].file_id)
+         caption = f"**{filename}**"
+     if c_thumb:
+         ph_path = await bot.download_media(c_thumb) 
+     else:
+         ph_path = await bot.download_media(c_thumb)  
          Image.open(ph_path).convert("RGB").save(ph_path)
          img = Image.open(ph_path)
          img.resize((320, 320))
