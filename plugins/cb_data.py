@@ -39,8 +39,7 @@ async def doc(bot, update):
          new_filename = filename + ".mkv"
 
      file_path = f"downloads/{new_filename}"
-     file = getattr(update, update.media.value)
-     media = file.media
+     file = getattr(update, update.media.value)     
      ms = await bot.send_message(update.chat.id, text="𝚃𝚁𝚈𝙸𝙽𝙶 𝚃𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳...")     
      c_time = time.time()
      try:
