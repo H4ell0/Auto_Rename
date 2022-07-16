@@ -58,7 +58,7 @@ async def doc(bot, update):
            duration = metadata.get('duration').seconds
      except:
         pass
-     user_id = int(update.message.chat.id) 
+     user_id = int(update.chat.id) 
      ph_path = None
      data = find(user_id) 
      media = getattr(file, file.media.value)
@@ -81,7 +81,7 @@ async def doc(bot, update):
      c_time = time.time() 
      try:       
          await bot.send_document(
-	     update.message.chat.id,
+	     update.chat.id,
              document=file_path,
              thumb=ph_path, 
              caption=caption, 
